@@ -1,0 +1,14 @@
+#!/bin/bash
+#Reads list.csv into ssldecoder, which in turn uses the apache server's json properties. Stores into ./results
+
+INPUT=list.csv
+OLDIFS=$IFS
+IFS=,
+[ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
+while read host port
+do
+	echo "Host : $host"
+	echo "Port : $port"
+	sh ./ssldecoder $host $port
+done < $INPUT
+IFS=$OLDIFS
