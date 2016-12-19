@@ -39,7 +39,7 @@ $random_blurp = rand(10,99999);
 //         "https://ct.izenpe.com",
 //         "https://ctlog.api.venafi.com", 
 //         "https://log.certly.io"];
-$ct_urls = ["https://ct.googleapis.com/aviator"];
+$ct_urls = array("https://ct.googleapis.com/aviator");
 
 
 # 2014-11-10 (nov) from wikipedia

@@ -42,7 +42,7 @@ foreach (glob("functions/*.php") as $filename) {
   <?php
   if ( isset($_GET['host']) && !empty($_GET['host'])) {
     echo '<div id="wrapper">';
-    $data = [];
+    $data = array();
     $hostname = mb_strtolower(get($_GET['host']));
     $hostname = parse_hostname($hostname);
     $host = $hostname['hostname'];

@@ -8,11 +8,11 @@ foreach (glob("functions/*.php") as $filename) {
 }
 
 if ( isset($_GET['host']) && !empty($_GET['host'])) {
-  $data = [];
+  $data = array();
   $hostname = mb_strtolower(get($_GET['host']));
   $hostname = parse_hostname($hostname);
   if ($hostname['multiple_ip']) {
-    $data["error"] = ["Host format is incorrect. (use \$host:\$ip.)"];
+    $data["error"] = array("Host format is incorrect. (use \$host:\$ip.)");
   } 
   $host = $hostname['hostname'];
   $ip = $hostname['ip'];
@@ -32,7 +32,7 @@ if ( isset($_GET['host']) && !empty($_GET['host'])) {
   $cache_filename = (string) "results/saved.csr." . $epoch . "." . $random_bla . ".api.json";
   $data["data"]["chain"]["1"] = csr_parse_json($_GET['csr']);
 } else {
-  $data["error"] = ["Host is required"];
+  $data["error"] = array("Host is required");
 }
 
 $data['version'] = $version;

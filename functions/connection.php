@@ -16,7 +16,7 @@
 
 function submitCertToCT($chain, $ct_url) {
   global $timeout;
-  $ct_chain = array('chain' => []);
+  $ct_chain = array('chain' => array());
   foreach ($chain as $key => $value) {
     $string = $value['key']['certificate_pem'];
     $pattern = '/-----(.*)-----/';

@@ -18,7 +18,7 @@ function crl_verify($raw_cert_data, $verbose=true) {
   global $random_blurp, $timeout;
   $cert_data = openssl_x509_parse($raw_cert_data);
   $cert_serial_nm = strtoupper(bcdechex($cert_data['serialNumber']));   
-  $crl_uris = [];
+  $crl_uris = array();
   $crl_uri = explode("\nFull Name:\n ", $cert_data['extensions']['crlDistributionPoints']);
   foreach ($crl_uri as $key => $uri) {
     if (!empty($uri) ) {
@@ -102,10 +102,10 @@ function crl_verify($raw_cert_data, $verbose=true) {
 
 function crl_verify_json($raw_cert_data) {
   global $random_blurp, $timeout;
-  $result = [];
+  $result = array();
   $cert_data = openssl_x509_parse($raw_cert_data);
   $cert_serial_nm = strtoupper(bcdechex($cert_data['serialNumber']));   
-  $crl_uris = [];
+  $crl_uris = array();
   $crl_uri = explode("\nFull Name:\n ", $cert_data['extensions']['crlDistributionPoints']);
   foreach ($crl_uri as $key => $uri) {
     if (isset($uri) ) {

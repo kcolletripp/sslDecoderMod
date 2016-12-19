@@ -24,7 +24,7 @@ function verify_certificate_hostname($raw_cert, $host) {
   //validates hostname to check with hostnames in certificate CN or subjectAltNames
   $cert_data = openssl_x509_parse($raw_cert);
   if ($cert_data['subject']['CN']) {
-    $cert_host_names = [];
+    $cert_host_names = array();
     $cert_host_names[] = $cert_data['subject']['CN'];
     if ($cert_data['extensions']['subjectAltName']) {
       foreach ( explode("DNS:", $cert_data['extensions']['subjectAltName']) as $altName ) {

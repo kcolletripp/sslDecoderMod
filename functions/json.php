@@ -20,7 +20,7 @@ function check_json($host,$ip,$port,$fastcheck=0) {
   global $ct_urls;
   $old_error_reporting = error_reporting();
   error_reporting(0);
-  $data = [];
+  $data = array();
   $stream = stream_context_create (array("ssl" => 
     array("capture_peer_cert" => true,
     "capture_peer_cert_chain" => true,
@@ -37,7 +37,7 @@ function check_json($host,$ip,$port,$fastcheck=0) {
   }
   $read_stream = stream_socket_client("ssl://$connect_ip:$port", $errno, $errstr, $timeout, STREAM_CLIENT_CONNECT, $stream);
   if ( $read_stream === false ) {
-    $data["error"] = ["Failed to connect: " . htmlspecialchars($errstr)];
+    $data["error"] = array("Failed to connect: " . htmlspecialchars($errstr));
     return $data;
   } else {
     $context = stream_context_get_params($read_stream);
@@ -61,7 +61,7 @@ function check_json($host,$ip,$port,$fastcheck=0) {
           $data["chain"][$chain_key] = cert_parse_json($curr, $next, null, false, $port, $include_chain);
         }
         // certificate transparency
-        $data["certificate_transparency"] = [];
+        $data["certificate_transparency"] = array();
         if($fastcheck == 0) {
           foreach ($ct_urls as $ct_url) {
             $submitToCT = submitCertToCT($data["chain"], $ct_url);
@@ -77,7 +77,7 @@ function check_json($host,$ip,$port,$fastcheck=0) {
         }
       } 
     } else {
-      $data["error"] = ["Chain too long."];
+      $data["error"] = array("Chain too long.");
       return $data;
     }
   }

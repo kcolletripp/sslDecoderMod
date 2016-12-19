@@ -21,7 +21,7 @@ function tls_fallback_scsv($host, $ip, $port) {
     //     // ipv6 openssl tools are broken. (https://rt.openssl.org/Ticket/Display.html?id=1365&user=guest&pass=guest)
     //     return false;
     // }
-    $result = [];
+    $result = array();
     $protocols = ssl_conn_protocols($host, $ip, $port);
     if (count(array_filter($protocols)) > 1) {
         $result['protocol_count'] = count(array_filter($protocols));

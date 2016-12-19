@@ -1025,7 +1025,7 @@ function cert_parse_json($raw_cert_data, $raw_next_cert_data=null, $host=null, $
   }
   //serial number
   if ( isset($cert_data['serialNumber']) ) { 
-    $serial = [];
+    $serial = array();
     $sn = str_split(strtoupper(bcdechex($cert_data['serialNumber'])), 2);
     $sn_len = count($sn);
     foreach ($sn as $key => $s) {
